@@ -6,6 +6,7 @@ let turn=new Audio('/music/turn2.mp3');
 let gameover=new Audio('/music/gameover1.mp3');
 let board=document.querySelector('.board');
 let scoreBox=document.querySelector('.scoreBox');
+let hiscoreBox=document.querySelector('#hiscorebox');
 
 let score=0;
 let speed=5;
@@ -46,9 +47,6 @@ function gameEngine(){
         gameover.play();
         music.pause();
         inputDir={x:0,y:0};
-        $(document).ready(function(){
-            
-        })
         alert("Game Over!! Press any key to start");
         snakeArr=[{x:5,y:3}];
         // music.play();
@@ -59,6 +57,11 @@ function gameEngine(){
     if(snakeArr[0].x === snakefood.x && snakeArr[0].y === snakefood.y){
         food.play();
         score += 1;
+        // if(score>hiscoreval){
+        //     hiscoreval = score;
+        //     localStorage.setItem("hiscore",JSON.stringify(hiscoreval));
+        //     hiscoreBox.innerHTML="HighScore: " + hiscoreval;
+        // }
         scoreBox.innerHTML="Score: "+score;
         if(score >=10 && score <20){
             speed = 8;
@@ -102,6 +105,14 @@ function gameEngine(){
 
 
 // Game Main Logic
+// let hiscore = localStorage.getItem("hiscore");
+//     if(hiscore === null){
+//         hiscoreval = 0;
+//         localStorage.setItem("hiscore",JSON.stringify(hiscoreval));
+//     }else{
+//         hiscoreval = JSON.parse(hiscore);
+//         hiscoreBox.innerHTML="HighScore: "+hiscore;
+//     }
 window.requestAnimationFrame(main);
 window.addEventListener('keydown',(e)=>{
     inputDir = {x:0,y:1}; //Start the Game
